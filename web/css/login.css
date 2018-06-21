@@ -1,0 +1,73 @@
+
+html{
+    background-color: whitesmoke;
+}
+.inputBox{
+    box-shadow: 1px 1px 5px darkgray inset;
+    margin-top: 10px;
+    height: 45px;
+    width: 300px;
+    border: none;
+    border-radius: 3px;
+    font-size: 100%;
+    padding: 5px 10px;;
+    outline: none;
+    transition: width;
+    transition-duration: 1s;
+}
+
+.submitButton{
+    font-size: large;
+    margin-top: 30px;
+    color: aliceblue;
+    outline: none;
+    height: 45px;
+    width: 200px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    transition: width;
+    background-color: cornflowerblue;
+    transition-duration: 0.2s;
+}
+
+.submitButton:hover{
+   width: 230px;
+}
+
+.submitButton:active{
+    background-color: steelblue;
+}
+
+#mainFormDiv{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 3px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    background-color: transparent;
+    margin-left: -180px;
+    margin-top: -200px;
+    width: 360px;
+    height: 260px;
+}
+
+ #inputDiv{
+     margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    height: auto;
+}
+
+#loginText{
+    margin-left: 30px;
+    color: dimgray;
+    font-size: x-large;
+}
+
+hr{
+    height:1px;
+    border:none;
+    border-top:1px dashed dimgray;
+}
