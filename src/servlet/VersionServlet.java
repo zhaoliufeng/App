@@ -38,10 +38,10 @@ public class VersionServlet extends HttpServlet {
         }
 
         try {
-            String op = req.getParameter(Config.OP_CODE);
+            int opcode = Integer.valueOf(req.getParameter(Config.OP_CODE));
             //根据包名获取软件名称
             String appName = "MeshLife";
-            switch (Integer.valueOf(op)) {
+            switch (opcode) {
                 case Req.VERSION_REQUEST_CODE: {
                     //查询版本信息
                     int st = Integer.valueOf(req.getParameter(Config.SYSTEM_TYPE));
@@ -162,7 +162,7 @@ public class VersionServlet extends HttpServlet {
 //        jsonObject.put(UPDATE_RES, updateRes);
 //        OutPrinter.getInstance(mResp.getWriter()).print(jsonObject);
         req.getSession().setAttribute("isUpdate", 1);
-        req.getRequestDispatcher("manage/get_app_info.jsp").forward(req,resp);
+        req.getRequestDispatcher("manage/get_app_info.jsp").forward(req, resp);
 
     }
 

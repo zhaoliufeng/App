@@ -17,4 +17,11 @@ public class Req {
     private static final int ADMIN_BASE = 100;
     public static final int ADMIN_LOGON = ADMIN_BASE;
 
+    /**
+     * MAC地址记录 1000
+     */
+    private static final int MAC_BASE = 1000;
+    public static final int MAC_SAVE = MAC_BASE;
+    public static final int MAC_READ = MAC_BASE + 1;
+
 }

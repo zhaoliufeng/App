@@ -19,10 +19,10 @@ public class AdminServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         req.setCharacterEncoding("UTF-8");
 
-        int op = Integer.parseInt(req.getParameter(Config.OP_CODE));
-        System.out.println("OpCode : " + op);
+        int opcode = Integer.parseInt(req.getParameter(Config.OP_CODE));
+        System.out.println("OpCode : " + opcode);
         try {
-            switch (op) {
+            switch (opcode) {
                 case Req.ADMIN_LOGON:
                     adminLogin(req, resp);
                     break;

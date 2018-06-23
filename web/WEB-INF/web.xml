@@ -26,4 +26,14 @@
         <servlet-name>AdminServlet</servlet-name>
         <url-pattern>/admin</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MacServlet</servlet-name>
+        <servlet-class>servlet.MacServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MacServlet</servlet-name>
+        <url-pattern>/mac</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -45,7 +45,7 @@
         iosDesc = PropertiesUtils.readIOSDesc(appOutPath);
         androidUpdatePath = PropertiesUtils.readAndroidUpdatePath(appOutPath);
         iosUpdatePath = PropertiesUtils.readIOSUpdatePath(appOutPath);
-        files = PropertiesUtils.readFlieList(filesOutPath);
+        files = PropertiesUtils.readFileList(filesOutPath);
     } catch (PropertiesNotFoundException e) {
         e.printStackTrace();
     }

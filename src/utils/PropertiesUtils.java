@@ -67,6 +67,11 @@ public class PropertiesUtils {
         writeProperties(outPath, DOWNLOAD_ANDROID, androidUpdatePath);
     }
 
+    //写网关mac地址 mac 存储时的key value 都是mac地址
+    public static void updateGatewayMac(String outPath, String mac) throws PropertiesNotFoundException{
+        writeProperties(outPath, mac, mac);
+    }
+
     /**
      * 读配置文件
      * @param outPath 配置文件的路径
@@ -85,7 +90,7 @@ public class PropertiesUtils {
         }
     }
 
-    private static List<String> readPropertiesList(String outPath, String key) throws PropertiesNotFoundException{
+    private static List<String> readPropertiesList(String outPath) throws PropertiesNotFoundException{
         List<String> fileList = new ArrayList<>();
         try {
             Properties pps = new Properties();
@@ -145,7 +150,12 @@ public class PropertiesUtils {
     }
 
     //读取文件列表
-    public static List<String> readFlieList(String outPath) throws PropertiesNotFoundException {
-        return readPropertiesList(outPath, FILES_PROPERTIES_PATH);
+    public static List<String> readFileList(String outPath) throws PropertiesNotFoundException {
+        return readPropertiesList(outPath);
+    }
+
+    //读取mac列表
+    public static List<String> readMacList(String outPath)throws PropertiesNotFoundException{
+        return readPropertiesList(outPath);
     }
 }
