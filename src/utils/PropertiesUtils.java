@@ -63,8 +63,12 @@ public class PropertiesUtils {
     }
 
     //更新android下载地址
-    public static void updateAndroidUpdatePath(String outPath, String androidUpdatePath)throws PropertiesNotFoundException{
-        writeProperties(outPath, DOWNLOAD_ANDROID, androidUpdatePath);
+    public static void updateAndroidUpdatePath(String outPath, String androidUpdatePath, boolean isCN)throws PropertiesNotFoundException{
+        if (isCN){
+            writeProperties(outPath, DOWNLOAD_ANDROID, androidUpdatePath);
+        }else {
+            writeProperties(outPath, DOWNLOAD_ANDROID_IF, androidUpdatePath);
+        }
     }
 
     //写网关mac地址 mac 存储时的key value 都是mac地址
@@ -125,8 +129,11 @@ public class PropertiesUtils {
     }
 
     //读取android下载路径
-    public static String readAndroidUpdatePath(String outPath) throws PropertiesNotFoundException {
-        return readProperties(outPath, DOWNLOAD_ANDROID);
+    public static String readAndroidUpdatePath(String outPath, int isChina) throws PropertiesNotFoundException {
+        if (isChina == 1){
+            return readProperties(outPath, DOWNLOAD_ANDROID);
+        }
+        return readProperties(outPath, DOWNLOAD_ANDROID_IF);
     }
 
     //读取ios更新描述

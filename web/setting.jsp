@@ -33,6 +33,7 @@
     String androidDesc = String.valueOf(session.getAttribute(Config.DESC_ANDROID));
     String iosDesc = String.valueOf(session.getAttribute(Config.DESC_IOS));
     String androidUpdatePath = String.valueOf(session.getAttribute(Config.DOWNLOAD_ANDROID));
+    String androidGoogleUpdatePath = String.valueOf(session.getAttribute(Config.DOWNLOAD_ANDROID_IF));
     String iosUpdatePath = String.valueOf(session.getAttribute(Config.DOWNLOAD_IOS));
     String appName = String.valueOf(session.getAttribute(Config.APP_NAME));
     @SuppressWarnings("unchecked")
@@ -70,7 +71,9 @@
             <input type="hidden" value="1" name="<%=Config.OP_CODE%>">
             <input type="hidden" value="1" name="<%=Config.SYSTEM_TYPE%>">
             版本号<br><input name="<%=Config.VERSION%>" value="<%=androidVersion%>" placeholder="1.0.0"/><br>
-            更新地址<br><input name="<%=Config.UPDATE_PATH%>" value="<%=androidUpdatePath%>"
+            国内更新地址<br><input name="<%=Config.UPDATE_PATH%>" value="<%=androidUpdatePath%>"
+                           placeholder="http://we-smart.."/><br>
+            GooglePlay地址<br><input name="<%=Config.GOOGLE_PLAY_UPDATE_PATH%>" value="<%=androidGoogleUpdatePath%>"
                            placeholder="http://we-smart.."/><br>
             更新描述<br><input name="<%=Config.DESC%>" value="<%=androidDesc%>" placeholder="更新描述"
                            class="longTextInput"/><br>
@@ -87,7 +90,7 @@
             <input type="hidden" value="1" name="<%=Config.OP_CODE%>">
             <input type="hidden" value="0" name="<%=Config.SYSTEM_TYPE%>">
             版本<br><input name="<%=Config.VERSION%>" value="<%=iosVersion%>" placeholder="1.0.0"/><br>
-            更新地址<br><input name="<%=Config.UPDATE_PATH%>" value="<%=iosUpdatePath%>"
+            AppStore更新地址<br><input name="<%=Config.UPDATE_PATH%>" value="<%=iosUpdatePath%>"
                            placeholder="http://we-smart.."/><br>
             更新描述<br><input name="<%=Config.DESC%>" value="<%=iosDesc%>" placeholder="更新描述"
                            class="longTextInput"/><br>

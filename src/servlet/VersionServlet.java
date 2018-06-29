@@ -40,20 +40,25 @@ public class VersionServlet extends HttpServlet {
         try {
             int opcode = Integer.valueOf(req.getParameter(Config.OP_CODE));
             //根据包名获取软件名称
-            String appName = "MeshLife";
+            String appName;
             switch (opcode) {
                 case Req.VERSION_REQUEST_CODE: {
                     //查询版本信息
                     int st = Integer.valueOf(req.getParameter(Config.SYSTEM_TYPE));
                     String ver = req.getParameter(Config.VERSION);
                     String appid = req.getParameter(Config.APP_ID);
+                    appName = String.valueOf(req.getParameter(Config.APP_NAME));
+                    int ic = 1;
+                    if (st == Config.ST_ANDROID){
+                        ic = Integer.valueOf(req.getParameter(Config.IS_CHINA));
+                    }
                     //校验参数完整性
                     if (ver == null || appid == null) {
                         throw new MissParamException();
                     }
                     getNewestVersion(
                             req.getServletContext().getRealPath(String.format(Config.MESHLIFE_CONFIG_PROPERTIES_PATH, appName).toLowerCase()),
-                            st, ver);
+                            st, ver, ic);
                 }
                 break;
                 case Req.EDIT_VERSION_INFO:
@@ -64,6 +69,7 @@ public class VersionServlet extends HttpServlet {
                     String appid = req.getParameter(Config.APP_ID);
                     String updatePath = req.getParameter(Config.UPDATE_PATH);
                     String desc = req.getParameter(Config.DESC);
+
                     //校验参数完整性
                     if (ver == null || appid == null) {
                         throw new MissParamException();
@@ -100,11 +106,11 @@ public class VersionServlet extends HttpServlet {
     /*
         请求最新的版本信息
     */
-    private void getNewestVersion(String ppsPath, int systemType, String version) throws PropertiesNotFoundException, IOException {
+    private void getNewestVersion(String ppsPath, int systemType, String version, int isChina) throws PropertiesNotFoundException, IOException {
         NetDataBean netDataBean = null;
         switch (systemType) {
             case Config.ST_ANDROID:
-                netDataBean = getAndroidVersion(ppsPath, version);
+                netDataBean = getAndroidVersion(ppsPath, version, isChina);
                 break;
             case Config.ST_IOS:
                 netDataBean = getIOSVersion(ppsPath, version);
@@ -120,11 +126,11 @@ public class VersionServlet extends HttpServlet {
     /*
         获取Android的版本信息
      */
-    private NetDataBean getAndroidVersion(String ppsPath, String version) throws PropertiesNotFoundException {
+    private NetDataBean getAndroidVersion(String ppsPath, String version, int isChina) throws PropertiesNotFoundException {
         NetDataBean bean = new NetDataBean();
         bean.setNewestVersion(PropertiesUtils.readAndroidVersion(ppsPath));
         bean.setNeedUpdate(VersionCheck.checkVersion(version, bean.getNewestVersion()));
-        bean.setUpdatePath(PropertiesUtils.readAndroidUpdatePath(ppsPath));
+        bean.setUpdatePath(PropertiesUtils.readAndroidUpdatePath(ppsPath, isChina));
         bean.setDesc(PropertiesUtils.readAndroidDesc(ppsPath));
         return bean;
     }
@@ -150,8 +156,9 @@ public class VersionServlet extends HttpServlet {
 
         switch (systemType) {
             case Config.ST_ANDROID:
+                String googlePath = req.getParameter(Config.GOOGLE_PLAY_UPDATE_PATH);
                 updateAndroidVersion(
-                        ppsPath, version, updatePath, desc);
+                        ppsPath, version, updatePath, googlePath, desc);
                 break;
             case Config.ST_IOS:
                 updateIOSVersion(
@@ -166,10 +173,13 @@ public class VersionServlet extends HttpServlet {
 
     }
 
-    private int updateAndroidVersion(String ppsPath, String version, String updatePath, String desc) throws PropertiesNotFoundException {
+    private int updateAndroidVersion(String ppsPath, String version, String updatePath,String googlePath, String desc) throws PropertiesNotFoundException {
         PropertiesUtils.updateAndroidVersion(ppsPath, version);
         if (updatePath != null) {
-            PropertiesUtils.updateAndroidUpdatePath(ppsPath, updatePath);
+            PropertiesUtils.updateAndroidUpdatePath(ppsPath, updatePath, true);
+        }
+        if (updatePath != null){
+            PropertiesUtils.updateAndroidUpdatePath(ppsPath, googlePath, false);
         }
         if (desc != null) {
             PropertiesUtils.updateAndroidDesc(ppsPath, desc);

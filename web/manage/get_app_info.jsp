@@ -32,6 +32,7 @@
     String androidDesc = "null";
     String iosDesc = "null";
     String androidUpdatePath = "null";
+    String androidGooglePlayPath = "null";
     String iosUpdatePath = "null";
     List<String> files = new ArrayList<>();
 
@@ -43,7 +44,8 @@
         iosVersion = PropertiesUtils.readIOSVersion(appOutPath);
         androidDesc = PropertiesUtils.readAndroidDesc(appOutPath);
         iosDesc = PropertiesUtils.readIOSDesc(appOutPath);
-        androidUpdatePath = PropertiesUtils.readAndroidUpdatePath(appOutPath);
+        androidUpdatePath = PropertiesUtils.readAndroidUpdatePath(appOutPath, 1);
+        androidGooglePlayPath = PropertiesUtils.readAndroidUpdatePath(appOutPath, 0);
         iosUpdatePath = PropertiesUtils.readIOSUpdatePath(appOutPath);
         files = PropertiesUtils.readFileList(filesOutPath);
     } catch (PropertiesNotFoundException e) {
@@ -54,6 +56,7 @@
     session.setAttribute(Config.DESC_ANDROID, androidDesc);
     session.setAttribute(Config.VERSION_ANDROID, androidVersion);
     session.setAttribute(Config.DOWNLOAD_ANDROID, androidUpdatePath);
+    session.setAttribute(Config.DOWNLOAD_ANDROID_IF, androidGooglePlayPath);
     session.setAttribute(Config.DESC_IOS, iosDesc);
     session.setAttribute(Config.VERSION_IOS, iosVersion);
     session.setAttribute(Config.DOWNLOAD_IOS, iosUpdatePath);

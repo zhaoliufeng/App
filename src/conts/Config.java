@@ -18,6 +18,7 @@ public class Config {
 
     public static final String DOWNLOAD_IOS = "update_path_ios";
     public static final String DOWNLOAD_ANDROID = "update_path_android";
+    public static final String DOWNLOAD_ANDROID_IF = "update_path_android_if";
 
     public static final String DESC_IOS = "desc_ios";
     public static final String DESC_ANDROID = "desc_android";
@@ -67,8 +68,12 @@ public class Config {
     public static final String DESC = "ds";
     //更新路径
     public static final String UPDATE_PATH = "up";
+    //googlePlay更新地址
+    public static final String GOOGLE_PLAY_UPDATE_PATH = "gup";
     //请求码
     public static final String OP_CODE = "op";
     //系统类型
     public static final String SYSTEM_TYPE = "st";
+    //判断国内外ip请求
+    public static final String IS_CHINA = "ic";
 }
