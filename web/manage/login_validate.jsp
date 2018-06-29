@@ -21,9 +21,10 @@
             pwInPps.equals(password)) {
         session.setAttribute(Config.NAME, name);
         session.setAttribute(Config.APP_NAME, "MeshLife");
+        session.setAttribute(Config.IS_UPDATE, 0);
         response.sendRedirect("get_app_info.jsp");
     } else {
-        out.print("<script>alert('账户或密码错误'); window.location='index.jsp' </script>");
+        out.print("<script>alert('账户或密码错误'); window.location='../index.jsp' </script>");
         out.flush();
         out.close();
     }
